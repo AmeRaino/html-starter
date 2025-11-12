@@ -153,6 +153,12 @@
             flex: 0 0 calc(50% - 0.25rem);
         }
         
+        .checkbox-item.full-width {
+            flex: 0 0 100%;
+            background: rgba(196, 181, 253, 0.1);
+            border: 1px solid rgba(196, 181, 253, 0.3);
+        }
+        
         .checkbox-item:hover {
             background: rgba(255,255,255,0.1);
         }
@@ -375,6 +381,13 @@
             color: rgba(255,255,255,0.6);
             margin-top: 1rem;
         }
+        
+        .note-text {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 0.2rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -415,6 +428,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="settings-section">
+                <div class="settings-title">Quiz Options</div>
+                <div class="checkbox-group">
+                    <div class="checkbox-item full-width">
+                        <input type="checkbox" id="read-options" checked>
+                        <label for="read-options">Read answer options aloud (uncheck to skip reading options)</label>
+                    </div>
+                </div>
+                <div class="note-text">When unchecked, options will be shown silently. The answer will always be announced.</div>
             </div>
             
             <div class="settings-section">
@@ -549,6 +573,7 @@
         let selectedENVoice = null;
         let jpSpeed = 0.9;
         let enSpeed = 1.1;
+        let shouldReadOptions = true;
         
         // DOM Elements
         const startBtn = document.getElementById('start-btn');
@@ -570,6 +595,7 @@
         const questionText = document.getElementById('question-text');
         const questionType = document.getElementById('question-type');
         const questionRomaji = document.getElementById('question-romaji');
+        const readOptionsCheckbox = document.getElementById('read-options');
         const optionCards = [
             document.getElementById('opt-0'),
             document.getElementById('opt-1'),
@@ -615,6 +641,7 @@
             const savedENVoice = localStorage.getItem('enVoice');
             const savedJPSpeed = localStorage.getItem('jpSpeed');
             const savedENSpeed = localStorage.getItem('enSpeed');
+            const savedReadOptions = localStorage.getItem('readOptions');
             
             if (savedJPVoice) jpVoiceSelect.value = savedJPVoice;
             if (savedENVoice) enVoiceSelect.value = savedENVoice;
@@ -627,6 +654,10 @@
                 enSpeedSlider.value = savedENSpeed;
                 enSpeedValue.textContent = `${savedENSpeed}x`;
                 enSpeed = parseFloat(savedENSpeed);
+            }
+            if (savedReadOptions !== null) {
+                readOptionsCheckbox.checked = savedReadOptions === 'true';
+                shouldReadOptions = savedReadOptions === 'true';
             }
         }
         
@@ -660,6 +691,12 @@
             enSpeed = parseFloat(e.target.value);
             enSpeedValue.textContent = `${enSpeed}x`;
             localStorage.setItem('enSpeed', enSpeed);
+        });
+        
+        // Read options checkbox listener
+        readOptionsCheckbox.addEventListener('change', (e) => {
+            shouldReadOptions = e.target.checked;
+            localStorage.setItem('readOptions', shouldReadOptions);
         });
         
         // Test voice function
@@ -1126,7 +1163,8 @@
             }
             
             statusText.innerText = data.type;
-            quizInfo.innerText = `Current Question Type: ${data.type}`;
+            const modeText = shouldReadOptions ? "" : " (Skip Options)";
+            quizInfo.innerText = `Current Question Type: ${data.type}${modeText}`;
             
             // Display the Japanese text immediately
             questionType.innerText = data.type;
@@ -1156,13 +1194,18 @@
             });
             optionsContainer.classList.add('active');
             
-            // Read options with selected speed
-            const optionLabels = ['A', 'B', 'C', 'D'];
-            for (let i = 0; i < 4; i++) {
-                if (!isRunning) return;
-                optionCards[i].style.borderColor = "rgba(255,255,255,0.5)";
-                await speak(`${optionLabels[i]}. ${options[i]}`, LANG_EN, enSpeed);
-                optionCards[i].style.borderColor = "transparent";
+            // Read options only if the checkbox is checked
+            if (shouldReadOptions) {
+                const optionLabels = ['A', 'B', 'C', 'D'];
+                for (let i = 0; i < 4; i++) {
+                    if (!isRunning) return;
+                    optionCards[i].style.borderColor = "rgba(255,255,255,0.5)";
+                    await speak(`${optionLabels[i]}. ${options[i]}`, LANG_EN, enSpeed);
+                    optionCards[i].style.borderColor = "transparent";
+                }
+            } else {
+                // Just give a brief pause to look at options
+                await new Promise(r => setTimeout(r, 500));
             }
             
             // Think time
@@ -1170,10 +1213,14 @@
             await wait(waitTimeMs);
             if (!isRunning) return;
             
-            // Reveal answer with selected speed
+            // Reveal answer with selected speed - ALWAYS read the answer
             statusText.innerText = "Answer";
             optionCards[correctIndex].classList.add('correct');
+            
+            // Always announce the answer, regardless of shouldReadOptions setting
+            const optionLabels = ['A', 'B', 'C', 'D'];
             await speak(`The answer is ${optionLabels[correctIndex]}. ${data.answer}`, LANG_EN, enSpeed);
+            
             if (!isRunning) return;
             
             // Short pause
@@ -1194,6 +1241,7 @@
             }
             
             waitTimeMs = parseInt(document.getElementById('think-time').value) * 1000;
+            shouldReadOptions = readOptionsCheckbox.checked;
             
             // Update selected voices
             selectedJPVoice = availableVoices.find(v => v.name === jpVoiceSelect.value) || null;
