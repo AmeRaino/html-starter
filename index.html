@@ -1,96 +1,1237 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Listening Practice</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        
+        :root {
+            --bg-gradient: linear-gradient(135deg, #2b0f3a 0%, #4c1d95 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --accent-color: #c4b5fd;
+            --highlight-color: #34d399;
+            --wrong-color: #f87171;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            padding: 20px;
+        }
+        
+        #app {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .status-pill {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.15);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .question-display {
+            background: rgba(196, 181, 253, 0.1);
+            border: 2px solid rgba(196, 181, 253, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .question-display.active {
+            background: rgba(196, 181, 253, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(196, 181, 253, 0.2);
+        }
+        
+        .question-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+        }
+        
+        .question-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.5;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .question-text.small {
+            font-size: 1.5rem;
+        }
+        
+        .question-romaji {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .settings-panel {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .settings-section {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .settings-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex: 0 0 calc(50% - 0.25rem);
+        }
+        
+        .checkbox-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item label {
+            cursor: pointer;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+        
+        .range-input {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .range-input input[type="number"] {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            width: 80px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .voice-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .voice-selector select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .voice-selector select option {
+            background: #2b0f3a;
+            color: white;
+        }
+        
+        .voice-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .test-voice-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+        
+        .test-voice-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .speed-control input[type="range"] {
+            width: 100px;
+        }
+        
+        .speed-control span {
+            font-size: 0.8rem;
+            min-width: 35px;
+        }
+        
+        .audio-visual {
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .bar {
+            width: 6px;
+            background: var(--accent-color);
+            border-radius: 5px;
+            height: 10px;
+            transition: height 0.2s ease;
+        }
+        
+        .playing .bar {
+            animation: bounce 1s infinite ease-in-out;
+        }
+        
+        .playing .bar:nth-child(2) { animation-delay: 0.1s; }
+        .playing .bar:nth-child(3) { animation-delay: 0.2s; }
+        .playing .bar:nth-child(4) { animation-delay: 0.3s; }
+        .playing .bar:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes bounce {
+            0%, 100% { height: 10px; opacity: 0.5; }
+            50% { height: 40px; opacity: 1; }
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+            transition: opacity 0.5s;
+        }
+        
+        .options-grid.active {
+            opacity: 1;
+        }
+        
+        .option-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        
+        .option-label {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .option-card.correct {
+            background: rgba(52, 211, 153, 0.2);
+            border-color: var(--highlight-color);
+            color: var(--highlight-color);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+        }
+        
+        .timer-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .timer-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-color);
+            transition: width 0.1s linear;
+        }
+        
+        .controls {
+            margin-top: 2rem;
+        }
+        
+        button {
+            background: var(--accent-color);
+            color: #2b0f3a;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 5px;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        button.stop-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.7);
+            padding: 8px 20px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .quiz-info {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="status-pill" id="status-text">Ready</div>
+        <h1>Japanese Listening Practice</h1>
+        
+        <div class="settings-panel" id="settings-panel">
+            <div class="settings-section">
+                <div class="settings-title">Voice Settings</div>
+                
+                <div class="voice-selector">
+                    <label for="jp-voice">Japanese Voice:</label>
+                    <select id="jp-voice">
+                        <option value="">Loading voices...</option>
+                    </select>
+                    <div class="voice-controls">
+                        <button class="test-voice-btn" onclick="testVoice('jp')">Test JP</button>
+                        <div class="speed-control">
+                            <span>Speed:</span>
+                            <input type="range" id="jp-speed" min="0.5" max="1.5" step="0.1" value="0.9">
+                            <span id="jp-speed-value">0.9x</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="en-voice">English Voice:</label>
+                    <select id="en-voice">
+                        <option value="">Loading voices...</option>
+                    </select>
+                    <div class="voice-controls">
+                        <button class="test-voice-btn" onclick="testVoice('en')">Test EN</button>
+                        <div class="speed-control">
+                            <span>Speed:</span>
+                            <input type="range" id="en-speed" min="0.5" max="1.5" step="0.1" value="1.1">
+                            <span id="en-speed-value">1.1x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <div class="settings-title">Practice Types</div>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-basic" checked>
+                        <label for="type-basic">Basic Numbers</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-date">
+                        <label for="type-date">Date (Month + Day)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-fulldate">
+                        <label for="type-fulldate">Full Date (Y/M/D)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-time">
+                        <label for="type-time">Time (Hour:Min)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-counter-generic">
+                        <label for="type-counter-generic">Generic Counter (つ)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-counter-people">
+                        <label for="type-counter-people">People Counter (人)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-counter-hon">
+                        <label for="type-counter-hon">Cylindrical (本)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-counter-satsu">
+                        <label for="type-counter-satsu">Books (冊)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-counter-kai">
+                        <label for="type-counter-kai">Times (回)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-weekday">
+                        <label for="type-weekday">Day of Week</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-age">
+                        <label for="type-age">Age (歳)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="type-month">
+                        <label for="type-month">Months Only</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <div class="settings-title">Number Range (for Basic Numbers)</div>
+                <div class="range-input">
+                    <span>From:</span>
+                    <input type="number" id="range-min" value="0" min="0">
+                    <span>To:</span>
+                    <input type="number" id="range-max" value="10000" min="1">
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <div class="settings-title">Settings</div>
+                <div class="range-input">
+                    <span>Think Time (seconds):</span>
+                    <input type="number" id="think-time" value="4" min="1" max="10">
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-display hidden" id="question-display">
+            <div class="question-label" id="question-type">Japanese Text</div>
+            <div class="question-text" id="question-text">--</div>
+            <div class="question-romaji hidden" id="question-romaji"></div>
+        </div>
+        
+        <div class="audio-visual hidden" id="visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <div class="options-grid hidden" id="options-container">
+            <div class="option-card" id="opt-0">
+                <span class="option-label">A</span>
+                <span class="option-text">--</span>
+            </div>
+            <div class="option-card" id="opt-1">
+                <span class="option-label">B</span>
+                <span class="option-text">--</span>
+            </div>
+            <div class="option-card" id="opt-2">
+                <span class="option-label">C</span>
+                <span class="option-text">--</span>
+            </div>
+            <div class="option-card" id="opt-3">
+                <span class="option-label">D</span>
+                <span class="option-text">--</span>
+            </div>
+        </div>
+        
+        <div class="timer-container hidden" id="timer-container">
+            <div class="timer-bar" id="timer-bar"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn">Start Practice</button>
+            <button class="stop-btn hidden" id="stop-btn">Stop</button>
+        </div>
+        
+        <div class="quiz-info" id="quiz-info"></div>
+    </div>
+    
+    <script>
+        // Configuration
+        const LANG_JP = 'ja-JP';
+        const LANG_EN = 'en-US';
+        
+        // State
+        let isRunning = false;
+        let currentUtterance = null;
+        let waitTimeMs = 4000;
+        let availableVoices = [];
+        let selectedJPVoice = null;
+        let selectedENVoice = null;
+        let jpSpeed = 0.9;
+        let enSpeed = 1.1;
+        
+        // DOM Elements
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const statusText = document.getElementById('status-text');
+        const visualizer = document.getElementById('visualizer');
+        const timerBar = document.getElementById('timer-bar');
+        const timerContainer = document.getElementById('timer-container');
+        const optionsContainer = document.getElementById('options-container');
+        const settingsPanel = document.getElementById('settings-panel');
+        const quizInfo = document.getElementById('quiz-info');
+        const jpVoiceSelect = document.getElementById('jp-voice');
+        const enVoiceSelect = document.getElementById('en-voice');
+        const jpSpeedSlider = document.getElementById('jp-speed');
+        const enSpeedSlider = document.getElementById('en-speed');
+        const jpSpeedValue = document.getElementById('jp-speed-value');
+        const enSpeedValue = document.getElementById('en-speed-value');
+        const questionDisplay = document.getElementById('question-display');
+        const questionText = document.getElementById('question-text');
+        const questionType = document.getElementById('question-type');
+        const questionRomaji = document.getElementById('question-romaji');
+        const optionCards = [
+            document.getElementById('opt-0'),
+            document.getElementById('opt-1'),
+            document.getElementById('opt-2'),
+            document.getElementById('opt-3')
+        ];
+        
+        // Initialize voices
+        function loadVoices() {
+            availableVoices = window.speechSynthesis.getVoices();
+            
+            // Clear existing options
+            jpVoiceSelect.innerHTML = '<option value="">Default Japanese Voice</option>';
+            enVoiceSelect.innerHTML = '<option value="">Default English Voice</option>';
+            
+            // Group voices by language
+            const jpVoices = availableVoices.filter(voice => 
+                voice.lang.startsWith('ja') || voice.lang === 'ja-JP'
+            );
+            
+            const enVoices = availableVoices.filter(voice => 
+                voice.lang.startsWith('en')
+            );
+            
+            // Populate Japanese voices
+            jpVoices.forEach(voice => {
+                const option = document.createElement('option');
+                option.value = voice.name;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                jpVoiceSelect.appendChild(option);
+            });
+            
+            // Populate English voices
+            enVoices.forEach(voice => {
+                const option = document.createElement('option');
+                option.value = voice.name;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                enVoiceSelect.appendChild(option);
+            });
+            
+            // Restore saved preferences if any
+            const savedJPVoice = localStorage.getItem('jpVoice');
+            const savedENVoice = localStorage.getItem('enVoice');
+            const savedJPSpeed = localStorage.getItem('jpSpeed');
+            const savedENSpeed = localStorage.getItem('enSpeed');
+            
+            if (savedJPVoice) jpVoiceSelect.value = savedJPVoice;
+            if (savedENVoice) enVoiceSelect.value = savedENVoice;
+            if (savedJPSpeed) {
+                jpSpeedSlider.value = savedJPSpeed;
+                jpSpeedValue.textContent = `${savedJPSpeed}x`;
+                jpSpeed = parseFloat(savedJPSpeed);
+            }
+            if (savedENSpeed) {
+                enSpeedSlider.value = savedENSpeed;
+                enSpeedValue.textContent = `${savedENSpeed}x`;
+                enSpeed = parseFloat(savedENSpeed);
+            }
+        }
+        
+        // Load voices when they're ready
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        loadVoices();
+        
+        // Voice selection event listeners
+        jpVoiceSelect.addEventListener('change', (e) => {
+            const voiceName = e.target.value;
+            selectedJPVoice = availableVoices.find(v => v.name === voiceName) || null;
+            localStorage.setItem('jpVoice', voiceName);
+        });
+        
+        enVoiceSelect.addEventListener('change', (e) => {
+            const voiceName = e.target.value;
+            selectedENVoice = availableVoices.find(v => v.name === voiceName) || null;
+            localStorage.setItem('enVoice', voiceName);
+        });
+        
+        // Speed control event listeners
+        jpSpeedSlider.addEventListener('input', (e) => {
+            jpSpeed = parseFloat(e.target.value);
+            jpSpeedValue.textContent = `${jpSpeed}x`;
+            localStorage.setItem('jpSpeed', jpSpeed);
+        });
+        
+        enSpeedSlider.addEventListener('input', (e) => {
+            enSpeed = parseFloat(e.target.value);
+            enSpeedValue.textContent = `${enSpeed}x`;
+            localStorage.setItem('enSpeed', enSpeed);
+        });
+        
+        // Test voice function
+        function testVoice(lang) {
+            window.speechSynthesis.cancel();
+            
+            if (lang === 'jp') {
+                const testText = 'こんにちは。テストです。123';
+                const voice = selectedJPVoice || availableVoices.find(v => v.lang.startsWith('ja'));
+                speakTest(testText, LANG_JP, jpSpeed, voice);
+            } else {
+                const testText = 'Hello. This is a test. One two three.';
+                const voice = selectedENVoice || availableVoices.find(v => v.lang.startsWith('en'));
+                speakTest(testText, LANG_EN, enSpeed, voice);
+            }
+        }
+        
+        function speakTest(text, lang, rate, voice) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = rate;
+            if (voice) utterance.voice = voice;
+            
+            utterance.onstart = () => visualizer.classList.add('playing');
+            utterance.onend = () => visualizer.classList.remove('playing');
+            
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        // Utility Functions
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        function getOrdinal(n) {
+            const s = ["th","st","nd","rd"];
+            const v = n % 100;
+            return s[(v-20)%10] || s[v] || s[0];
+        }
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        
+        // Get enabled practice types
+        function getEnabledTypes() {
+            const types = [];
+            if (document.getElementById('type-basic').checked) types.push('basic');
+            if (document.getElementById('type-date').checked) types.push('date');
+            if (document.getElementById('type-fulldate').checked) types.push('fulldate');
+            if (document.getElementById('type-time').checked) types.push('time');
+            if (document.getElementById('type-counter-generic').checked) types.push('counter-generic');
+            if (document.getElementById('type-counter-people').checked) types.push('counter-people');
+            if (document.getElementById('type-counter-hon').checked) types.push('counter-hon');
+            if (document.getElementById('type-counter-satsu').checked) types.push('counter-satsu');
+            if (document.getElementById('type-counter-kai').checked) types.push('counter-kai');
+            if (document.getElementById('type-weekday').checked) types.push('weekday');
+            if (document.getElementById('type-age').checked) types.push('age');
+            if (document.getElementById('type-month').checked) types.push('month');
+            return types;
+        }
+        
+        // Question Generators
+        function generateBasicNumber() {
+            const min = parseInt(document.getElementById('range-min').value) || 0;
+            const max = parseInt(document.getElementById('range-max').value) || 10000;
+            const num = getRandomInt(min, max);
+            
+            return {
+                type: 'Basic Number',
+                jpText: num.toString(),
+                displayText: num.toString(),
+                answer: num.toString(),
+                distractors: generateNumberDistractors(num, min, max)
+            };
+        }
+        
+        function generateNumberDistractors(correct, min, max) {
+            const arr = [];
+            while (arr.length < 3) {
+                let val;
+                if (correct < 100) {
+                    val = getRandomInt(Math.max(min, correct - 20), Math.min(max, correct + 20));
+                } else {
+                    const variance = Math.floor(correct * 0.3);
+                    val = getRandomInt(Math.max(min, correct - variance), Math.min(max, correct + variance));
+                }
+                if (val !== correct && !arr.includes(val.toString())) {
+                    arr.push(val.toString());
+                }
+            }
+            return arr;
+        }
+        
+        function generateDate() {
+            const months = [
+                {num: 1, en: "January", jp: "1月"},
+                {num: 2, en: "February", jp: "2月"},
+                {num: 3, en: "March", jp: "3月"},
+                {num: 4, en: "April", jp: "4月"},
+                {num: 5, en: "May", jp: "5月"},
+                {num: 6, en: "June", jp: "6月"},
+                {num: 7, en: "July", jp: "7月"},
+                {num: 8, en: "August", jp: "8月"},
+                {num: 9, en: "September", jp: "9月"},
+                {num: 10, en: "October", jp: "10月"},
+                {num: 11, en: "November", jp: "11月"},
+                {num: 12, en: "December", jp: "12月"}
+            ];
+            
+            const mIndex = getRandomInt(0, 11);
+            const month = months[mIndex];
+            const maxDays = [31,28,31,30,31,30,31,31,30,31,30,31][mIndex];
+            const day = getRandomInt(1, maxDays);
+            
+            const jpText = `${month.jp}${day}日`;
+            const displayText = `${month.num}月${day}日`;
+            const enText = `${month.en} ${day}${getOrdinal(day)}`;
+            
+            return {
+                type: 'Date',
+                jpText: jpText,
+                displayText: displayText,
+                answer: enText,
+                distractors: generateDateDistractors(mIndex, day, months)
+            };
+        }
+        
+        function generateDateDistractors(correctMonthIdx, correctDay, monthsData) {
+            const arr = [];
+            while (arr.length < 3) {
+                const m = getRandomInt(0, 11);
+                const d = getRandomInt(1, 28);
+                if (m === correctMonthIdx && d === correctDay) continue;
+                const txt = `${monthsData[m].en} ${d}${getOrdinal(d)}`;
+                if (!arr.includes(txt)) arr.push(txt);
+            }
+            return arr;
+        }
+        
+        function generateFullDate() {
+            const year = getRandomInt(2020, 2030);
+            const month = getRandomInt(1, 12);
+            const maxDays = [31,28,31,30,31,30,31,31,30,31,30,31][month-1];
+            const day = getRandomInt(1, maxDays);
+            
+            const jpText = `${year}年${month}月${day}日`;
+            const displayText = jpText;
+            const monthNames = ["January","February","March","April","May","June",
+                              "July","August","September","October","November","December"];
+            const enText = `${monthNames[month-1]} ${day}${getOrdinal(day)}, ${year}`;
+            
+            return {
+                type: 'Full Date',
+                jpText: jpText,
+                displayText: displayText,
+                answer: enText,
+                distractors: generateFullDateDistractors(year, month, day, monthNames)
+            };
+        }
+        
+        function generateFullDateDistractors(year, month, day, monthNames) {
+            const arr = [];
+            while (arr.length < 3) {
+                const y = getRandomInt(year - 2, year + 2);
+                const m = getRandomInt(1, 12);
+                const d = getRandomInt(1, 28);
+                const txt = `${monthNames[m-1]} ${d}${getOrdinal(d)}, ${y}`;
+                if (!arr.includes(txt) && !(y === year && m === month && d === day)) {
+                    arr.push(txt);
+                }
+            }
+            return arr;
+        }
+        
+        function generateTime() {
+            const hour = getRandomInt(0, 23);
+            const minute = getRandomInt(0, 59);
+            
+            const jpText = `${hour}時${minute}分`;
+            const displayText = jpText;
+            const hour12 = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+            const ampm = hour < 12 ? 'AM' : 'PM';
+            const minStr = minute.toString().padStart(2, '0');
+            const enText = `${hour12}:${minStr} ${ampm}`;
+            
+            return {
+                type: 'Time',
+                jpText: jpText,
+                displayText: displayText,
+                answer: enText,
+                distractors: generateTimeDistractors(hour, minute)
+            };
+        }
+        
+        function generateTimeDistractors(correctHour, correctMinute) {
+            const arr = [];
+            while (arr.length < 3) {
+                const h = getRandomInt(0, 23);
+                const m = getRandomInt(0, 59);
+                const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+                const ampm = h < 12 ? 'AM' : 'PM';
+                const txt = `${h12}:${m.toString().padStart(2, '0')} ${ampm}`;
+                if (!arr.includes(txt) && !(h === correctHour && m === correctMinute)) {
+                    arr.push(txt);
+                }
+            }
+            return arr;
+        }
+        
+        function generateGenericCounter() {
+            const count = getRandomInt(1, 10);
+            const readings = ["ひとつ","ふたつ","みっつ","よっつ","いつつ",
+                            "むっつ","ななつ","やっつ","ここのつ","とお"];
+            
+            return {
+                type: 'Generic Counter (つ)',
+                jpText: readings[count - 1],
+                displayText: readings[count - 1],
+                answer: `${count} item${count > 1 ? 's' : ''}`,
+                distractors: generateCounterDistractors(count, 'items')
+            };
+        }
+        
+        function generatePeopleCounter() {
+            const count = getRandomInt(1, 20);
+            let jpText;
+            let displayText;
+            if (count === 1) {
+                jpText = "ひとり";
+                displayText = "一人 (ひとり)";
+            } else if (count === 2) {
+                jpText = "ふたり";
+                displayText = "二人 (ふたり)";
+            } else {
+                jpText = `${count}人`;
+                displayText = `${count}人`;
+            }
+            
+            return {
+                type: 'People Counter (人)',
+                jpText: jpText,
+                displayText: displayText,
+                answer: `${count} ${count === 1 ? 'person' : 'people'}`,
+                distractors: generateCounterDistractors(count, 'people')
+            };
+        }
+        
+        function generateCylindricalCounter() {
+            const count = getRandomInt(1, 20);
+            const jpText = `${count}本`;
+            const displayText = `${count}本`;
+            
+            return {
+                type: 'Cylindrical Counter (本)',
+                jpText: jpText,
+                displayText: displayText,
+                answer: `${count} cylindrical object${count > 1 ? 's' : ''}`,
+                distractors: generateCounterDistractors(count, 'cylindrical objects')
+            };
+        }
+        
+        function generateBookCounter() {
+            const count = getRandomInt(1, 20);
+            const jpText = `${count}冊`;
+            const displayText = `${count}冊`;
+            
+            return {
+                type: 'Book Counter (冊)',
+                jpText: jpText,
+                displayText: displayText,
+                answer: `${count} book${count > 1 ? 's' : ''}`,
+                distractors: generateCounterDistractors(count, 'books')
+            };
+        }
+        
+        function generateTimesCounter() {
+            const count = getRandomInt(1, 20);
+            const jpText = `${count}回`;
+            const displayText = `${count}回`;
+            
+            return {
+                type: 'Times Counter (回)',
+                jpText: jpText,
+                displayText: displayText,
+                answer: `${count} time${count > 1 ? 's' : ''}`,
+                distractors: generateCounterDistractors(count, 'times')
+            };
+        }
+        
+        function generateWeekday() {
+            const days = [
+                {jp: "月曜日", en: "Monday", kanji: "月曜日"},
+                {jp: "火曜日", en: "Tuesday", kanji: "火曜日"},
+                {jp: "水曜日", en: "Wednesday", kanji: "水曜日"},
+                {jp: "木曜日", en: "Thursday", kanji: "木曜日"},
+                {jp: "金曜日", en: "Friday", kanji: "金曜日"},
+                {jp: "土曜日", en: "Saturday", kanji: "土曜日"},
+                {jp: "日曜日", en: "Sunday", kanji: "日曜日"}
+            ];
+            
+            const day = days[getRandomInt(0, 6)];
+            
+            return {
+                type: 'Day of Week',
+                jpText: day.jp,
+                displayText: day.kanji,
+                answer: day.en,
+                distractors: days.filter(d => d.en !== day.en).map(d => d.en).slice(0, 3)
+            };
+        }
+        
+        function generateAge() {
+            const age = getRandomInt(1, 100);
+            const jpText = `${age}歳`;
+            const displayText = `${age}歳`;
+            
+            return {
+                type: 'Age (歳)',
+                jpText: jpText,
+                displayText: displayText,
+                answer: `${age} years old`,
+                distractors: generateCounterDistractors(age, 'years old')
+            };
+        }
+        
+        function generateMonth() {
+            const months = [
+                {jp: "1月", en: "January", kanji: "1月"},
+                {jp: "2月", en: "February", kanji: "2月"},
+                {jp: "3月", en: "March", kanji: "3月"},
+                {jp: "4月", en: "April", kanji: "4月"},
+                {jp: "5月", en: "May", kanji: "5月"},
+                {jp: "6月", en: "June", kanji: "6月"},
+                {jp: "7月", en: "July", kanji: "7月"},
+                {jp: "8月", en: "August", kanji: "8月"},
+                {jp: "9月", en: "September", kanji: "9月"},
+                {jp: "10月", en: "October", kanji: "10月"},
+                {jp: "11月", en: "November", kanji: "11月"},
+                {jp: "12月", en: "December", kanji: "12月"}
+            ];
+            
+            const month = months[getRandomInt(0, 11)];
+            
+            return {
+                type: 'Month',
+                jpText: month.jp,
+                displayText: month.kanji,
+                answer: month.en,
+                distractors: months.filter(m => m.en !== month.en).map(m => m.en).slice(0, 3)
+            };
+        }
+        
+        function generateCounterDistractors(correct, unit) {
+            const arr = [];
+            while (arr.length < 3) {
+                const val = getRandomInt(Math.max(1, correct - 5), correct + 5);
+                const txt = unit.includes('years old') ? `${val} ${unit}` : 
+                           `${val} ${val === 1 ? unit.replace(/s$/, '') : unit}`;
+                if (val !== correct && !arr.includes(txt)) {
+                    arr.push(txt);
+                }
+            }
+            return arr;
+        }
+        
+        // Generate question based on enabled types
+        function generateQuestion() {
+            const types = getEnabledTypes();
+            if (types.length === 0) {
+                alert('Please select at least one practice type');
+                return null;
+            }
+            
+            const type = types[getRandomInt(0, types.length - 1)];
+            
+            switch(type) {
+                case 'basic': return generateBasicNumber();
+                case 'date': return generateDate();
+                case 'fulldate': return generateFullDate();
+                case 'time': return generateTime();
+                case 'counter-generic': return generateGenericCounter();
+                case 'counter-people': return generatePeopleCounter();
+                case 'counter-hon': return generateCylindricalCounter();
+                case 'counter-satsu': return generateBookCounter();
+                case 'counter-kai': return generateTimesCounter();
+                case 'weekday': return generateWeekday();
+                case 'age': return generateAge();
+                case 'month': return generateMonth();
+                default: return generateBasicNumber();
+            }
+        }
+        
+        // Speech Functions
+        function speak(text, lang, rate = 0.9) {
+            return new Promise((resolve, reject) => {
+                if (!isRunning) {
+                    reject('Stopped');
+                    return;
+                }
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = rate;
+                
+                // Set voice based on language
+                if (lang.startsWith('ja')) {
+                    const voice = selectedJPVoice || availableVoices.find(v => v.lang.startsWith('ja'));
+                    if (voice) utterance.voice = voice;
+                } else {
+                    const voice = selectedENVoice || availableVoices.find(v => v.lang.startsWith('en'));
+                    if (voice) utterance.voice = voice;
+                }
+                
+                utterance.onstart = () => visualizer.classList.add('playing');
+                utterance.onend = () => {
+                    visualizer.classList.remove('playing');
+                    resolve();
+                };
+                utterance.onerror = () => {
+                    visualizer.classList.remove('playing');
+                    resolve();
+                };
+                
+                currentUtterance = utterance;
+                window.speechSynthesis.speak(utterance);
+            });
+        }
+        
+        async function wait(ms) {
+            if (!isRunning) return;
+            
+            timerBar.style.transition = `width ${ms}ms linear`;
+            void timerBar.offsetWidth;
+            timerBar.style.width = '100%';
+            
+            return new Promise(resolve => setTimeout(() => {
+                timerBar.style.transition = 'none';
+                timerBar.style.width = '0%';
+                resolve();
+            }, ms));
+        }
+        
+        // Main Quiz Loop
+        async function playRound() {
+            if (!isRunning) return;
+            
+            // Reset UI
+            optionsContainer.classList.remove('active');
+            questionDisplay.classList.remove('active');
+            optionCards.forEach(card => {
+                card.className = 'option-card';
+                card.querySelector('.option-text').innerText = '--';
+            });
+            
+            // Generate Question
+            const data = generateQuestion();
+            if (!data) {
+                isRunning = false;
+                return;
+            }
+            
+            statusText.innerText = data.type;
+            quizInfo.innerText = `Current Question Type: ${data.type}`;
+            
+            // Display the Japanese text immediately
+            questionType.innerText = data.type;
+            questionText.innerText = data.displayText || data.jpText;
+            
+            // Adjust font size for longer text
+            if (data.displayText && data.displayText.length > 10) {
+                questionText.classList.add('small');
+            } else {
+                questionText.classList.remove('small');
+            }
+            
+            questionDisplay.classList.add('active');
+            
+            // Prepare options
+            let options = [data.answer, ...data.distractors];
+            shuffleArray(options);
+            const correctIndex = options.indexOf(data.answer);
+            
+            // Speak Japanese with selected speed
+            await speak(data.jpText, LANG_JP, jpSpeed);
+            if (!isRunning) return;
+            
+            // Show options
+            options.forEach((opt, idx) => {
+                optionCards[idx].querySelector('.option-text').innerText = opt;
+            });
+            optionsContainer.classList.add('active');
+            
+            // Read options with selected speed
+            const optionLabels = ['A', 'B', 'C', 'D'];
+            for (let i = 0; i < 4; i++) {
+                if (!isRunning) return;
+                optionCards[i].style.borderColor = "rgba(255,255,255,0.5)";
+                await speak(`${optionLabels[i]}. ${options[i]}`, LANG_EN, enSpeed);
+                optionCards[i].style.borderColor = "transparent";
+            }
+            
+            // Think time
+            statusText.innerText = "Think...";
+            await wait(waitTimeMs);
+            if (!isRunning) return;
+            
+            // Reveal answer with selected speed
+            statusText.innerText = "Answer";
+            optionCards[correctIndex].classList.add('correct');
+            await speak(`The answer is ${optionLabels[correctIndex]}. ${data.answer}`, LANG_EN, enSpeed);
+            if (!isRunning) return;
+            
+            // Short pause
+            await new Promise(r => setTimeout(r, 1500));
+            
+            // Continue
+            playRound();
+        }
+        
+        // Event Listeners
+        startBtn.addEventListener('click', () => {
+            if (isRunning) return;
+            
+            const types = getEnabledTypes();
+            if (types.length === 0) {
+                alert('Please select at least one practice type');
+                return;
+            }
+            
+            waitTimeMs = parseInt(document.getElementById('think-time').value) * 1000;
+            
+            // Update selected voices
+            selectedJPVoice = availableVoices.find(v => v.name === jpVoiceSelect.value) || null;
+            selectedENVoice = availableVoices.find(v => v.name === enVoiceSelect.value) || null;
+            
+            isRunning = true;
+            settingsPanel.classList.add('hidden');
+            questionDisplay.classList.remove('hidden');
+            visualizer.classList.remove('hidden');
+            optionsContainer.classList.remove('hidden');
+            timerContainer.classList.remove('hidden');
+            startBtn.classList.add('hidden');
+            stopBtn.classList.remove('hidden');
+            
+            window.speechSynthesis.cancel();
+            playRound();
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            isRunning = false;
+            window.speechSynthesis.cancel();
+            
+            settingsPanel.classList.remove('hidden');
+            questionDisplay.classList.add('hidden');
+            visualizer.classList.add('hidden');
+            optionsContainer.classList.add('hidden');
+            timerContainer.classList.add('hidden');
+            startBtn.classList.remove('hidden');
+            stopBtn.classList.add('hidden');
+            
+            statusText.innerText = "Stopped";
+            quizInfo.innerText = "";
+            questionText.innerText = "--";
+            questionDisplay.classList.remove('active');
+            optionsContainer.classList.remove('active');
+            timerBar.style.width = '0%';
+            visualizer.classList.remove('playing');
+        });
+    </script>
+</body>
 </html>
